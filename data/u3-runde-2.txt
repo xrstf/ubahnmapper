@@ -1,0 +1,57 @@
+2023-10-30T12:01:07;barmbek ab
+2023-10-30T12:02:52;dehnhaide an
+2023-10-30T12:03:20;dehnhaide ab
+2023-10-30T12:04:19;hh straße an
+2023-10-30T12:04:44;hh straße ab
+2023-10-30T12:05:46;mundsburg an
+2023-10-30T12:06:17;mundsburg ab
+2023-10-30T12:07:21;uhlandstraße an
+2023-10-30T12:07:44;uhlandstraße ab
+2023-10-30T12:08:14;tunnel beginn
+2023-10-30T12:08:39;lübecker straße an
+2023-10-30T12:09:08;lübecker straße ab
+2023-10-30T12:10:21;berliner tor an
+2023-10-30T12:11:18;berliner tor ab
+2023-10-30T12:12:33;hbf an
+2023-10-30T12:14:42;hbf ab
+2023-10-30T12:15:33;mönckebergstraße an
+2023-10-30T12:15:59;mönckebergstraße ab
+2023-10-30T12:16:44;rathaus an
+2023-10-30T12:21:21;rathaus ab
+2023-10-30T12:21:51;tunnel aus
+2023-10-30T12:22:33;rödingsmarkt an
+2023-10-30T12:23:03;rödingsmarkt ab
+2023-10-30T12:24:06;baumwall an
+2023-10-30T12:24:32;baumwall ab
+2023-10-30T12:25:45;landungsbrücken an
+2023-10-30T12:26:11;landungsbrücken ab
+2023-10-30T12:27:04;st pauli an
+2023-10-30T12:27:29;st pauli ab
+2023-10-30T12:28:24;feldstraße an
+2023-10-30T12:28:52;feldstraße ab
+2023-10-30T12:30:03;sternschanze an
+2023-10-30T12:30:31;sternschanze ab
+2023-10-30T12:31:10;schlump an
+2023-10-30T12:31:38;schlump ab
+2023-10-30T12:33:02;hoheluftbrücke an
+2023-10-30T12:33:29;hoheluftbrücke ab
+2023-10-30T12:34:40;eppendorfer baum an
+2023-10-30T12:35:11;eppendorfer baum ab
+2023-10-30T12:36:01;kellingshusenstraße an
+2023-10-30T12:36:36;kellingshusenstraße ab
+2023-10-30T12:37:38;sierichstraße an
+2023-10-30T12:37:59;sierichstraße ab
+2023-10-30T12:39:01;borgweg an
+2023-10-30T12:39:21;borgweg ab
+2023-10-30T12:40:39;saarlandstraße an
+2023-10-30T12:40:59;saarlandstraße ab
+2023-10-30T12:42:10;barmbek an
+2023-10-30T12:42:53;unten
+2023-10-30T12:43:48;oben
+2023-10-30T12:48:09;barmbek ab
+2023-10-30T12:49:07;brücke
+2023-10-30T12:50:25;habichtstraße an
+2023-10-30T12:50:46;habichtstraße ab
+2023-10-30T12:53:01;wandsbek gartenstadt an
+2023-10-30T12:53:25;wandsbek gartenstadt ab
+2023-10-30T12:56:04;trabrennbahn an

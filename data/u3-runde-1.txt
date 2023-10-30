@@ -1,0 +1,54 @@
+2023-10-30T11:09:45;wandsbek gartenstadt an
+2023-10-30T11:10:17;wandsbek gartenstadt ab
+2023-10-30T11:11:54;habichtstraße an
+2023-10-30T11:12:24;habichtstraße ab
+2023-10-30T11:13:38;barmbek brücke
+2023-10-30T11:14:55;barmbek an
+2023-10-30T11:16:00;barmbek ab
+2023-10-30T11:17:39;dehnhaide an
+2023-10-30T11:18:04;dehnhaide ab
+2023-10-30T11:19:00;hh straße an
+2023-10-30T11:19:23;hh straße ab
+2023-10-30T11:20:27;mundsburg an
+2023-10-30T11:21:07;mundsburg ab
+2023-10-30T11:22:09;uhlandstraße an
+2023-10-30T11:22:30;uhlandstraße ab
+2023-10-30T11:23:03;tunnel beginn
+2023-10-30T11:23:27;lübecker straße an
+2023-10-30T11:24:15;lübecker straße ab
+2023-10-30T11:25:27;berliner tor an
+2023-10-30T11:26:18;berliner tor ab
+2023-10-30T11:27:34;hbf an
+2023-10-30T11:28:24;hbf ab
+2023-10-30T11:29:10;mönckebergstraße an
+2023-10-30T11:29:36;mönckebergstraße ab
+2023-10-30T11:30:24;rathaus an
+2023-10-30T11:31:24;rathaus ab
+2023-10-30T11:31:59;tunnel aus
+2023-10-30T11:32:41;rödingsmarkt an
+2023-10-30T11:33:04;rödingsmarkt ab
+2023-10-30T11:34:03;baumwall an
+2023-10-30T11:34:30;baumwall ab
+2023-10-30T11:35:42;landungsbrücken an
+2023-10-30T11:36:25;landungsbrücken ab
+2023-10-30T11:37:23;st pauli an
+2023-10-30T11:37:58;st pauli ab
+2023-10-30T11:38:54;feldstraße an
+2023-10-30T11:39:21;feldstraße ab
+2023-10-30T11:40:30;sternschanze an
+2023-10-30T11:41:40;sternschanze ab
+2023-10-30T11:42:20;schlump an
+2023-10-30T11:43:05;schlump ab
+2023-10-30T11:44:33;hoheluftbrücke an
+2023-10-30T11:45:03;hoheluftbrücke ab
+2023-10-30T11:46:26;eppendorfer baum an
+2023-10-30T11:46:46;eppendorfer baum ab
+2023-10-30T11:47:45;kellingshusenstraße an
+2023-10-30T11:48:36;kellingshusenstraße ab
+2023-10-30T11:49:41;sierichstraße an
+2023-10-30T11:50:02;sierichstraße ab
+2023-10-30T11:51:10;borgweg an
+2023-10-30T11:51:34;borgweg ab
+2023-10-30T11:52:55;saarlandstraße an
+2023-10-30T11:53:16;saarlandstraße ab
+2023-10-30T11:54:29;barmbek an
