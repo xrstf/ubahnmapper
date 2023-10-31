@@ -6,7 +6,7 @@ import (
 	"time"
 
 	mcp "github.com/ardnew/mcp2221a"
-	"go.xrstf.de/ubahnmapper/pkg/lps25"
+	"go.xrstf.de/go-lps25"
 )
 
 func main() {

@@ -2,3 +2,5 @@ github.com/ardnew/mcp2221a v0.1.1 h1:HlFotlPenNal8kCuxrR08w1txp5I9S/RYC0B/RhToVs
 github.com/ardnew/mcp2221a v0.1.1/go.mod h1:2O5vUs7SayOzIOvvFjJMRXEbeSO14lBDi9KjxLVZR3E=
 github.com/karalabe/hid v1.0.0 h1:+/CIMNXhSU/zIJgnIvBD2nKHxS/bnRHhhs9xBryLpPo=
 github.com/karalabe/hid v1.0.0/go.mod h1:Vr51f8rUOLYrfrWDFlV12GGQgM5AT8sVh+2fY4MPeu8=
+go.xrstf.de/go-lps25 v0.0.0-20231030210014-abf019cc25ca h1:hrdhZu/0hRbkfogsjvotAmx58ZSZxZqq4ZrH7rhgda0=
+go.xrstf.de/go-lps25 v0.0.0-20231030210014-abf019cc25ca/go.mod h1:yU8M+z4+RAI6ShJGv2a57bLRlHci1eoEy9ItaAjdU4E=
