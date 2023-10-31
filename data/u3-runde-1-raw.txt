@@ -1,3 +1,9 @@
+2023-10-30T11:09:45;wandsbek gartenstadt an
+2023-10-30T11:10:17;wandsbek gartenstadt ab
+2023-10-30T11:11:54;habichtstraße an
+2023-10-30T11:12:24;habichtstraße ab
+2023-10-30T11:13:38;barmbek brücke
+2023-10-30T11:14:55;barmbek an
 2023-10-30T11:16:00;barmbek ab
 2023-10-30T11:17:39;dehnhaide an
 2023-10-30T11:18:04;dehnhaide ab

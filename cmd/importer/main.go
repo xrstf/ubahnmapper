@@ -8,18 +8,20 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/spf13/pflag"
 )
 
 var (
-	timeShift    = pflag.DurationP("time-shift", "s", 0, "shift start of timeseries by this much time (Go duration, e.g. '30m')")
-	protocolFile = pflag.StringP("protocol", "p", "", "protocol CSV file")
-	runID        = pflag.StringP("run-id", "i", "", "unique identifier for this timeseries")
-	timezone     = pflag.StringP("timezone", "t", "Europe/Berlin", "timezone to interpret the timestamps with")
-	basePressure = pflag.Float64P("base-pressure", "b", 0, "instead of taking the first datapoint as the base pressure, use this value")
-	eventRange   = pflag.BoolP("event-range", "r", false, "trim any data points before the first and after the last event")
+	timeShift     = pflag.DurationP("time-shift", "s", 0, "shift start of timeseries by this much time (Go duration, e.g. '30m')")
+	collapseStops = pflag.DurationP("collapse-stops", "c", 0, "collapse all data points between ' an' and ' ab' events (Go duration, e.g. '30m') (requires --protocol)")
+	protocolFile  = pflag.StringP("protocol", "p", "", "protocol CSV file")
+	runID         = pflag.StringP("run-id", "i", "", "unique identifier for this timeseries")
+	timezone      = pflag.StringP("timezone", "t", "Europe/Berlin", "timezone to interpret the timestamps with")
+	basePressure  = pflag.Float64P("base-pressure", "b", 0, "instead of taking the first datapoint as the base pressure, use this value")
+	eventRange    = pflag.BoolP("event-range", "r", false, "trim any data points before the first and after the last event")
 )
 
 type Datapoint struct {
@@ -74,6 +76,13 @@ func main() {
 		dataTimeseries, err = trimTimeseries(dataTimeseries)
 		if err != nil {
 			log.Fatalf("Failed to trim timeseries: %v", err)
+		}
+	}
+
+	if *collapseStops > 0 {
+		dataTimeseries, err = collapseStopsInTimeseries(dataTimeseries, *collapseStops)
+		if err != nil {
+			log.Fatalf("Failed to collapse stops in timeseries: %v", err)
 		}
 	}
 
@@ -253,11 +262,120 @@ func trimTimeseries(data *Timeseries) (*Timeseries, error) {
 	return data, nil
 }
 
+func collapseStopsInTimeseries(data *Timeseries, collapseDuration time.Duration) (*Timeseries, error) {
+	if len(data.Points) < 2 {
+		return data, nil
+	}
+
+	result := &Timeseries{
+		Points: []Datapoint{},
+	}
+
+	totalPoints := len(data.Points)
+
+	// every time we replace a chunk of points with a fixed length stop,
+	// we have to shift all following points and keep updating the shift
+	// based on each stop
+	var timeShift time.Duration
+
+	for i := 0; i < totalPoints; i++ {
+		point := data.Points[i]
+
+		if isArrival(point) {
+			departure := -1
+			pressures := []float64{point.Pressure}
+
+			// collect all following data points until we find the departure
+			for j := i + 1; j < totalPoints; j++ {
+				jPoint := data.Points[j]
+
+				if isArrival(jPoint) {
+					return nil, fmt.Errorf("arrival follows arrival, missing departure event for arrival @ %v", point.Recorded)
+				}
+
+				pressures = append(pressures, jPoint.Pressure)
+
+				if isDeparture(jPoint) {
+					departure = j
+					break
+				}
+			}
+
+			// if we found a departure point, great :)
+			if departure >= 0 {
+				// calculate the average pressure during the stop
+				pressure := average(pressures)
+
+				departurePoint := data.Points[departure]
+
+				// add 2 points to the result, so they form a straight
+				// line between them with the defined length (duration)
+				result.Points = append(result.Points, Datapoint{
+					Recorded: point.Recorded.Add(timeShift),
+					Pressure: pressure,
+					Event:    point.Event,
+				}, Datapoint{
+					Recorded: point.Recorded.Add(timeShift).Add(collapseDuration),
+					Pressure: pressure,
+					Event:    departurePoint.Event,
+				})
+
+				// calculate how much to shift all following points based
+				// on this change; first calculate how long the real-life
+				// stop actually was
+				actualDuration := departurePoint.Recorded.Sub(point.Recorded)
+				newShift := collapseDuration - actualDuration
+
+				// add this shift to all the others
+				timeShift += newShift
+
+				// continue scanning after the departure element
+				i = departure
+			} else {
+				// if no departure was found, add the arrival and continue normally
+				result.Points = append(result.Points, Datapoint{
+					Recorded: point.Recorded.Add(timeShift),
+					Pressure: point.Pressure,
+					Event:    point.Event,
+				})
+			}
+
+			continue
+		}
+
+		result.Points = append(result.Points, Datapoint{
+			Recorded: point.Recorded.Add(timeShift),
+			Pressure: point.Pressure,
+			Event:    point.Event,
+		})
+	}
+
+	return result, nil
+}
+
+func average(values []float64) float64 {
+	acc := float64(0)
+	for _, val := range values {
+		acc += val
+	}
+
+	return acc / float64(len(values))
+}
+
+func isArrival(p Datapoint) bool {
+	return strings.HasSuffix(p.Event, " an")
+}
+
+func isDeparture(p Datapoint) bool {
+	return strings.HasSuffix(p.Event, " ab")
+}
+
 func printTimeseriesSQL(data *Timeseries, filename string, runID string) {
 	fmt.Printf("-- input file.....: %v\n", filename)
 	fmt.Printf("-- time offset....: %v\n", data.TimeOffset)
 	fmt.Printf("-- pressure offset: %v hPa\n", data.PressureOffset)
 	fmt.Println("")
+	fmt.Println("BEGIN;")
 
 	for _, p := range data.Points {
 		comment := "NULL"
@@ -268,4 +386,6 @@ func printTimeseriesSQL(data *Timeseries, filename string, runID string) {
 		fmt.Printf(`INSERT INTO ubahnmapper ("time", "run_id", "pressure", "comment") VALUES ('%s', '%s', %v, %s);`, p.Recorded.Format("2006-01-02T15:04:05.999999999"), runID, p.Pressure, comment)
 		fmt.Println("")
 	}
+
+	fmt.Println("COMMIT;")
 }

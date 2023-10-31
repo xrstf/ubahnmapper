@@ -46,3 +46,12 @@
 2023-10-30T12:40:39;saarlandstraße an
 2023-10-30T12:40:59;saarlandstraße ab
 2023-10-30T12:42:10;barmbek an
+2023-10-30T12:42:53;unten
+2023-10-30T12:43:48;oben
+2023-10-30T12:48:09;barmbek ab
+2023-10-30T12:49:07;brücke
+2023-10-30T12:50:25;habichtstraße an
+2023-10-30T12:50:46;habichtstraße ab
+2023-10-30T12:53:01;wandsbek gartenstadt an
+2023-10-30T12:53:25;wandsbek gartenstadt ab
+2023-10-30T12:56:04;trabrennbahn an
